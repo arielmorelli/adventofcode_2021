@@ -7,13 +7,29 @@ import (
     "strconv"
 )
 
-func SonarSweep(input []int) int {
-    increases := 0
+func SonarSweep(input []string) int {
+    var converted int
+    var err error
+    var increases int = 0
+
     if len(input) <= 1 {
         return increases
     }
-    for i := 0; i < len(input)-1; i++ {
-        if input[i] <= input[i+1] {
+
+    converted_input := make([]int, len(input))
+    for index, value := range(input) {
+        if value == "" {
+            break
+        }
+        converted, err = strconv.Atoi(value)
+        if err != nil {
+            panic(fmt.Sprintf("Error converting %v. %v", value, err))
+        }
+        converted_input[index] = converted
+    }
+
+    for i := 0; i < len(converted_input)-1; i++ {
+        if converted_input[i] <= converted_input[i+1] {
             increases += 1
         }
     }
@@ -21,7 +37,6 @@ func SonarSweep(input []int) int {
 }
 
 func Run() {
-    var converted int
 
     data, err := ioutil.ReadFile("inputs/sonar_sweep")
     if err != nil {
@@ -30,18 +45,6 @@ func Run() {
     }
 
     lines := strings.Split(string(data), "\n")
-    input := make([]int, len(lines))
-    for index, value := range(lines) {
-        if value == "" {
-            break
-        }
-        converted, err = strconv.Atoi(value)
-        if err != nil {
-            fmt.Printf("Error converting %v. %v\n", value, err)
-            return
-        }
-        input[index] = converted
-    }
 
-    fmt.Printf("1. %d\n", SonarSweep(input))
+    fmt.Printf("1. %d\n", SonarSweep(lines))
 }
