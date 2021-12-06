@@ -2,14 +2,20 @@ package main
 
 import (
     "fmt"
-    sonar_sweep "github.com/arielmorelli/adventofcode_2021/src/1_sonar_sweep"
+    sonarSweep "github.com/arielmorelli/adventofcode_2021/src/1_sonar_sweep"
     dive "github.com/arielmorelli/adventofcode_2021/src/2_dive"
-    binary_diagnostic "github.com/arielmorelli/adventofcode_2021/src/3_binary_diagnostic"
+    binaryDiagnostic "github.com/arielmorelli/adventofcode_2021/src/3_binary_diagnostic"
+    giantSquid "github.com/arielmorelli/adventofcode_2021/src/4_giant_squid"
+
 )
 
 func main() {
     fmt.Println("Outputs:")
-    sonar_sweep.Run()
+    sonarSweep.Run()
+    fmt.Println("--------------------")
     dive.Run()
-    binary_diagnostic.Run()
+    fmt.Println("--------------------")
+    binaryDiagnostic.Run()
+    fmt.Println("--------------------")
+    giantSquid.Run()
 }
